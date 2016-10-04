@@ -38,8 +38,6 @@ public class DocletLauncher {
 
 		String command = "javac -classpath " + JAR_PATH + " " + DOCLET_SRC_FILE;
 		
-		System.out.println("Command : " + command);
-
 		Runtime runTime = Runtime.getRuntime();
 
 		Process process = null;
@@ -51,18 +49,12 @@ public class DocletLauncher {
 			return false;
 		}
 
-		// javac -classpath ./libraries/com-sun-javadoc.jar src/fr/univlille1/m2iagl/bacquetdurey/doclet/ListClass.java 
 		return true;
 	}
 
 	private boolean execute(){
-		// javadoc -docletpath bin
-        // -doclet fr.univlille1.m2iagl.bacquetdurey.doclet.GetJavadocDoclet -sourcepath /home/antonin/workspace/pje2/src/
 		
-		
-		
-		// Main.execute(new String[]{"-docletpath", DOCLET_PATH_OPTION, "-doclet", DOCLET_OPTION, "-sourcepath", pathToCheck, "annotations"});
-		com.sun.tools.javadoc.Main.execute(new String[]{"-docletpath", DOCLET_PATH_OPTION, "-doclet", DOCLET_OPTION, "-sourcepath", pathToCheck, "annotations"});
+		com.sun.tools.javadoc.Main.execute(new String[]{"-docletpath", DOCLET_PATH_OPTION, "-doclet", DOCLET_OPTION, "-sourcepath", pathToCheck, "com.test"});
 		
 		System.out.println("End of execution");
 		

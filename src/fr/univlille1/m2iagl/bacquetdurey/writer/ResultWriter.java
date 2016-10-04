@@ -23,6 +23,12 @@ public class ResultWriter{
 	
 	public void write(){
 		
+		for(ClassModel classModel : model.getClassModel()){
+			writeClassModel(classModel);
+		}
+		
+		printWriter.close();
+		
 		
 	}
 
@@ -73,28 +79,29 @@ public class ResultWriter{
 				
 		printWriter.write("\t" + partialSignature + "\n");
 		
-		printWriter.write("\t(");
+		printWriter.write("\t(\n");
 	
 		for(ParameterModel parameterModel : methodModel.getParameters()){
-			String parameterInfo = parameterModel.getType() + " " + parameterModel.getName() + " // ";
-
-			if(parameterModel.getCommentText() != "")
-				parameterInfo += parameterModel.getCommentText();
-			else
-				parameterInfo += "EMPTY";
-			
-			printWriter.write(parameterInfo);
-				
+			writeParameterModel(parameterModel);
 		}
 		
 		printWriter.write("\t)");
 	}
 
 	public void writePackageModel(PackageModel packageModel){
-
+		
 	}
 
 	public void writeParameterModel(ParameterModel parameterModel){
+		
+		String parameterInfo = parameterModel.getType() + " " + parameterModel.getName() + " // ";
+
+		if(parameterModel.getCommentText() != "")
+			parameterInfo += parameterModel.getCommentText();
+		else
+			parameterInfo += "EMPTY";
+		
+		printWriter.write("\t\t" + parameterInfo + "\n");
 
 	}
 

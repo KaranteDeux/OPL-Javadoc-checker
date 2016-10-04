@@ -1,6 +1,7 @@
 package fr.univlille1.m2iagl.bacquetdurey.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Model {
@@ -17,6 +18,10 @@ public class Model {
 	
 	public void addClassModel(ClassModel classModel){
 		classModels.add(classModel);
+	}
+	
+	public List<ClassModel> getClassModel(){
+		return classModels;
 	}
 
 	@Override

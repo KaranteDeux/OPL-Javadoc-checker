@@ -22,7 +22,19 @@ public class ParameterModel extends AbstractElementModel{
 		return type;
 	}
 	
+	public void setCommentText(String commentText){
+		this.commentText = commentText;
+	}
+	
 	public String getCommentText(){
 		return commentText;
 	}
+
+	@Override
+	public String toString() {
+		return "ParameterModel [name=" + name + ", type=" + type
+				+ ", commentText=" + commentText + "]";
+	}
+	
+	
 }
