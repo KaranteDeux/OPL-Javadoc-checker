@@ -59,21 +59,10 @@ public class DocletLauncher {
 		// javadoc -docletpath bin
         // -doclet fr.univlille1.m2iagl.bacquetdurey.doclet.GetJavadocDoclet -sourcepath /home/antonin/workspace/pje2/src/
 		
-		// Main.execute(new String[]{"-docletpath", DOCLET_PATH_OPTION, "-doclet", DOCLET_OPTION, "-sourcepath", pathToCheck, "annotations"});
-		String command = "javadoc -docletpath " + DOCLET_PATH_OPTION + " -doclet " + DOCLET_OPTION + " -sourcepath " + pathToCheck + " annotations";
 		
-		System.out.println("Command : " + command);
-
-		Runtime runTime = Runtime.getRuntime();
-
-		Process process = null;
-
-		try {
-			process = runTime.exec(command);
-			process.waitFor();
-		} catch(Exception e){
-			return false;
-		}
+		
+		// Main.execute(new String[]{"-docletpath", DOCLET_PATH_OPTION, "-doclet", DOCLET_OPTION, "-sourcepath", pathToCheck, "annotations"});
+		com.sun.tools.javadoc.Main.execute(new String[]{"-docletpath", DOCLET_PATH_OPTION, "-doclet", DOCLET_OPTION, "-sourcepath", pathToCheck, "annotations"});
 		
 		System.out.println("End of execution");
 		
