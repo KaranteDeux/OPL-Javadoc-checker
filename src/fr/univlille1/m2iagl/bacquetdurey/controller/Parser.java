@@ -1,4 +1,4 @@
-package fr.univlille1.m2iagl.bacquetdurey.parser;
+package fr.univlille1.m2iagl.bacquetdurey.controller;
 
 import java.util.ArrayList;
 import java.util.List;

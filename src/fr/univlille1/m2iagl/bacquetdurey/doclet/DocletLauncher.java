@@ -16,20 +16,18 @@ public class DocletLauncher {
 	private String pathToCheck;
 	private List<String> packages;
 	
-	public DocletLauncher(String pathToCheck, List<String> packages){
-		this.packages = packages;
-		this.pathToCheck = pathToCheck;
+	public DocletLauncher(){
+		
 	}
 
-	public boolean start(){
-		
+	public boolean start(String pathToCheck, List<String> packages, Model model){
+		Model.currentModel = model;
+		this.packages = packages;
+		this.pathToCheck = pathToCheck;
 		if(!compile())
 			return false;
 
 		boolean execResult = execute();
-		
-		System.out.println("Model : ");
-		System.out.println(Model.actualModel);
 		
 		return execResult;
 	}
@@ -54,9 +52,15 @@ public class DocletLauncher {
 
 	private boolean execute(){
 		
-		com.sun.tools.javadoc.Main.execute(new String[]{"-docletpath", DOCLET_PATH_OPTION, "-doclet", DOCLET_OPTION, "-sourcepath", pathToCheck, "com.test"});
+		String packageNames = "";
 		
-		System.out.println("End of execution");
+		for(int i=0;i<packages.size()-1;i++){
+			packageNames += packages.get(i) + " ";
+		}
+		
+		packageNames += packages.get(packages.size()-1);
+		
+		com.sun.tools.javadoc.Main.execute(new String[]{"-docletpath", DOCLET_PATH_OPTION, "-doclet", DOCLET_OPTION, "-sourcepath", pathToCheck, packageNames});
 		
 		return true;
 	}

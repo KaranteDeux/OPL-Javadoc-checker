@@ -1,12 +1,13 @@
-package fr.univlille1.m2iagl.bacquetdurey.writer;
+package fr.univlille1.m2iagl.bacquetdurey.controller;
 
 import java.io.PrintWriter;
 
+import fr.univlille1.m2iagl.bacquetdurey.analysis.AnalysisModel;
+import fr.univlille1.m2iagl.bacquetdurey.analysis.ClassAnalysis;
 import fr.univlille1.m2iagl.bacquetdurey.model.ClassModel;
 import fr.univlille1.m2iagl.bacquetdurey.model.ConstructorModel;
 import fr.univlille1.m2iagl.bacquetdurey.model.FieldModel;
 import fr.univlille1.m2iagl.bacquetdurey.model.MethodModel;
-import fr.univlille1.m2iagl.bacquetdurey.model.Model;
 import fr.univlille1.m2iagl.bacquetdurey.model.PackageModel;
 import fr.univlille1.m2iagl.bacquetdurey.model.ParameterModel;
 
@@ -14,43 +15,41 @@ public class ResultWriter{
 	
 	PrintWriter printWriter;
 	
-	Model model;
+	AnalysisModel analysisModel;
 	
-	public ResultWriter(PrintWriter printWriter, Model model){
+	public ResultWriter(PrintWriter printWriter, AnalysisModel analysisModel){
 		this.printWriter = printWriter;
-		this.model = model;
+		this.analysisModel = analysisModel;
 	}
 	
 	public void write(){
 		
-		for(ClassModel classModel : model.getClassModel()){
-			writeClassModel(classModel);
+		for(ClassAnalysis classModel : analysisModel.getClassesAnalysis()){
+			writeClassAnalysis(classModel);
 		}
 		
 		printWriter.close();
-		
-		
 	}
 
-	public void writeClassModel(ClassModel classModel){
+	public void writeClassAnalysis(ClassAnalysis classAnalysis){
 		
-		printWriter.write(" - " + classModel.getName());
+		printWriter.write(" - " + classAnalysis.getAnalysisMessage());
 		
-		for(FieldModel fieldModel : classModel.getFields()){
+		/*for(FieldModel fieldModel : analysisModel.getFields()){
 			writeFieldModel(fieldModel);
 		}
 		
-		for(ConstructorModel constructorModel : classModel.getConstructors()){
+		for(ConstructorModel constructorModel : analysisModel.getConstructors()){
 			writeConstructorModel(constructorModel);
 		}
 		
-		for(MethodModel methodModel : classModel.getMethods()){
+		for(MethodModel methodModel : analysisModel.getMethods()){
 			writeMethodModel(methodModel);
 		}
-			
+			*/
 
 	}
-
+/*
 	public void writeConstructorModel(ConstructorModel constructorModel){
 		
 		printWriter.write("\t");
@@ -103,7 +102,7 @@ public class ResultWriter{
 		
 		printWriter.write("\t\t" + parameterInfo + "\n");
 
-	}
+	}*/
 
 
 

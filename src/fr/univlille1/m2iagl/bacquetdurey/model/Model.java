@@ -7,8 +7,10 @@ import java.util.List;
 public class Model {
 
 	
-	public static Model actualModel = new Model();
+	public static Model currentModel;
 	
+	public static Model masterBranchModel = new Model();
+	public static Model pullRequestBranchModel = new Model();
 	
 	private List<ClassModel> classModels;
 	

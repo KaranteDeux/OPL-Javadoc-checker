@@ -6,9 +6,9 @@ import java.io.PrintWriter;
 import com.sun.javadoc.ClassDoc;
 import com.sun.javadoc.RootDoc;
 
+import fr.univlille1.m2iagl.bacquetdurey.controller.Parser;
 import fr.univlille1.m2iagl.bacquetdurey.model.ClassModel;
 import fr.univlille1.m2iagl.bacquetdurey.model.Model;
-import fr.univlille1.m2iagl.bacquetdurey.parser.Parser;
 
 public class GetJavadocDoclet {
 	public static boolean start(RootDoc root) {
@@ -19,7 +19,7 @@ public class GetJavadocDoclet {
 			ClassDoc classDoc = classes[i];
 			
 			ClassModel classModel = Parser.parseClass(classDoc);
-			Model.actualModel.addClassModel(classModel);
+			Model.currentModel.addClassModel(classModel);
 
 		}
 
