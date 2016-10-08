@@ -1,5 +1,6 @@
 package fr.univlille1.m2iagl.bacquetdurey.analysis;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.univlille1.m2iagl.bacquetdurey.analysis.added.AddedConstructorAnalysis;
@@ -48,6 +49,21 @@ public abstract class ClassAnalysis extends Analysis{
 	public ClassAnalysis(String className, String commentText){
 		this.className = className;
 		this.commentText = commentText;
+		
+		addedFieldsAnalysis = new ArrayList<>();
+		changedFieldsAnalysis = new ArrayList<>();
+		removedFieldsAnalysis = new ArrayList<>();
+		unchangedFieldsAnalysis = new ArrayList<>();
+		addedConstructorsAnalysis = new ArrayList<>();
+		changedConstructorsAnalysis = new ArrayList<>();
+		removedConstructorsAnalysis = new ArrayList<>();
+		unchangedConstructorsAnalysis = new ArrayList<>();
+		addedMethodsAnalysis = new ArrayList<>();
+		changedMethodsAnalysis = new ArrayList<>();
+		removedMethodsAnalysis = new ArrayList<>();
+		unchangedMethodsAnalysis = new ArrayList<>();
+
+		
 	}
 	
 	public String getClassName(){
@@ -100,6 +116,33 @@ public abstract class ClassAnalysis extends Analysis{
 			unchangedMethodsAnalysis.add((UnchangedMethodAnalysis) methodAnalysis);
 			
 		}
+	}
+	
+	public List<FieldAnalysis> getFieldsAnalysis(){
+		List<FieldAnalysis> fieldsAnalysis = new ArrayList<FieldAnalysis>(changedFieldsAnalysis);
+		fieldsAnalysis.addAll(addedFieldsAnalysis);
+		fieldsAnalysis.addAll(removedFieldsAnalysis);
+		fieldsAnalysis.addAll(unchangedFieldsAnalysis);
+
+		return fieldsAnalysis;
+	}
+	
+	public List<ConstructorAnalysis> getConstructorsAnalysis(){
+		List<ConstructorAnalysis> constructorsAnalysis = new ArrayList<ConstructorAnalysis>(changedConstructorsAnalysis);
+		constructorsAnalysis.addAll(addedConstructorsAnalysis);
+		constructorsAnalysis.addAll(removedConstructorsAnalysis);
+		constructorsAnalysis.addAll(unchangedConstructorsAnalysis);
+
+		return constructorsAnalysis;
+	}
+	
+	public List<MethodAnalysis> getMethodsAnalysis(){
+		List<MethodAnalysis> methodsAnalysis = new ArrayList<MethodAnalysis>(changedMethodsAnalysis);
+		methodsAnalysis.addAll(addedMethodsAnalysis);
+		methodsAnalysis.addAll(removedMethodsAnalysis);
+		methodsAnalysis.addAll(unchangedMethodsAnalysis);
+
+		return methodsAnalysis;
 	}
 	
 	

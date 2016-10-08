@@ -7,15 +7,22 @@ public class ConstructorModel extends AbstractElementModel{
 	
 	private String commentText;
 	
+	private String constructorName;
+	
 	private List<ParameterModel> parametersModel;
 	
-	public ConstructorModel(String commentText){
+	public ConstructorModel(String constructorName, String commentText){
+		this.constructorName = constructorName;
 		this.commentText = commentText;
 		parametersModel = new ArrayList<>();
 	}
 	
 	public void addParameterModel(ParameterModel parameterModel){
 		parametersModel.add(parameterModel);
+	}
+	
+	public List<ParameterModel> getParameters(){
+		return parametersModel;
 	}
 
 	@Override
@@ -26,7 +33,7 @@ public class ConstructorModel extends AbstractElementModel{
 
 	@Override
 	public String getName() {
-		return "constructor";
+		return constructorName;
 	}
 	
 	@Override

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.univlille1.m2iagl.bacquetdurey.analysis.AnalysisModel;
-import fr.univlille1.m2iagl.bacquetdurey.controller.JavadocAnalyser;
+import fr.univlille1.m2iagl.bacquetdurey.analysis.JavadocAnalyser;
 import fr.univlille1.m2iagl.bacquetdurey.controller.ResultWriter;
 import fr.univlille1.m2iagl.bacquetdurey.doclet.DocletLauncher;
 import fr.univlille1.m2iagl.bacquetdurey.model.Model;
@@ -29,8 +29,7 @@ public class Start {
 
 		docletLauncher.start(pullRequestBranch, packages, Model.pullRequestBranchModel);
 
-		JavadocAnalyser analyser = new JavadocAnalyser(Model.masterBranchModel, Model.pullRequestBranchModel);
-		analyser.analyse();
+		JavadocAnalyser.analyse(Model.masterBranchModel, Model.pullRequestBranchModel, AnalysisModel.currentAnalysisModel);
 		
 		
 		File file = new File("javadoc_analysis.txt");

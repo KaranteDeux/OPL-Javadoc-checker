@@ -48,7 +48,7 @@ public class Parser {
 
 	public static ConstructorModel parseConstructor(ConstructorDoc constructorDoc){
 
-		ConstructorModel constructorModel = new ConstructorModel(constructorDoc.commentText());		
+		ConstructorModel constructorModel = new ConstructorModel(constructorDoc.name(), constructorDoc.commentText());		
 
 
 		for(Parameter parameter : constructorDoc.parameters()){

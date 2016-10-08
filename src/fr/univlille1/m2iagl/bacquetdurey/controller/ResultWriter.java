@@ -4,9 +4,10 @@ import java.io.PrintWriter;
 
 import fr.univlille1.m2iagl.bacquetdurey.analysis.AnalysisModel;
 import fr.univlille1.m2iagl.bacquetdurey.analysis.ClassAnalysis;
-import fr.univlille1.m2iagl.bacquetdurey.model.ClassModel;
-import fr.univlille1.m2iagl.bacquetdurey.model.ConstructorModel;
-import fr.univlille1.m2iagl.bacquetdurey.model.FieldModel;
+import fr.univlille1.m2iagl.bacquetdurey.analysis.ConstructorAnalysis;
+import fr.univlille1.m2iagl.bacquetdurey.analysis.FieldAnalysis;
+import fr.univlille1.m2iagl.bacquetdurey.analysis.MethodAnalysis;
+import fr.univlille1.m2iagl.bacquetdurey.analysis.ParameterAnalysis;
 import fr.univlille1.m2iagl.bacquetdurey.model.MethodModel;
 import fr.univlille1.m2iagl.bacquetdurey.model.PackageModel;
 import fr.univlille1.m2iagl.bacquetdurey.model.ParameterModel;
@@ -33,76 +34,60 @@ public class ResultWriter{
 
 	public void writeClassAnalysis(ClassAnalysis classAnalysis){
 		
-		printWriter.write(" - " + classAnalysis.getAnalysisMessage());
+		printWriter.write(classAnalysis.getAnalysisMessage());
 		
-		/*for(FieldModel fieldModel : analysisModel.getFields()){
-			writeFieldModel(fieldModel);
+		for(FieldAnalysis fieldAnalysis : classAnalysis.getFieldsAnalysis()){
+			writeFieldAnalysis(fieldAnalysis);
 		}
 		
-		for(ConstructorModel constructorModel : analysisModel.getConstructors()){
-			writeConstructorModel(constructorModel);
+		for(ConstructorAnalysis constructorAnalysis : classAnalysis.getConstructorsAnalysis()){
+			writeConstructorAnalysis(constructorAnalysis);
 		}
 		
-		for(MethodModel methodModel : analysisModel.getMethods()){
-			writeMethodModel(methodModel);
+		for(MethodAnalysis methodAnalysis : classAnalysis.getMethodsAnalysis()){
+			writeMethodAnalysis(methodAnalysis);
 		}
-			*/
-
-	}
-/*
-	public void writeConstructorModel(ConstructorModel constructorModel){
-		
-		printWriter.write("\t");
+			
 
 	}
 
-	public void writeFieldModel(FieldModel fieldModel){
+	public void writeConstructorAnalysis(ConstructorAnalysis constructorAnalysis){
 		
-		String info = "\t* " + fieldModel.getName() + "-"  + fieldModel.getType() + " " + fieldModel.getName() + " - ";
-		String javadoc = "// ";
-		
-		if(fieldModel.getCommentText() != "")
-			javadoc += fieldModel.getCommentText();
-		else
-			javadoc += "EMPTY";
-		
-		printWriter.write(info);
-		printWriter.write(javadoc);
-		
-
-	}
-	
-	public void writeMethodModel(MethodModel methodModel){
-		
-		String partialSignature = methodModel.getVisibility() + " " + methodModel.getReturnType() + " " + methodModel.getName();
-				
-		printWriter.write("\t" + partialSignature + "\n");
+		printWriter.write(constructorAnalysis.getAnalysisMessage());
 		
 		printWriter.write("\t(\n");
+		for(ParameterAnalysis parameterAnalysis : constructorAnalysis.getParametersAnalysis()){
+			writeParameterAnalysis(parameterAnalysis);
+		}
+		printWriter.write("\t)\n");
+
+	}
+
+	public void writeFieldAnalysis(FieldAnalysis fieldAnalysis){
+		
+		printWriter.write(fieldAnalysis.getAnalysisMessage());
+		printWriter.write("\n");
+
+	}
 	
-		for(ParameterModel parameterModel : methodModel.getParameters()){
-			writeParameterModel(parameterModel);
+	public void writeMethodAnalysis(MethodAnalysis methodAnalysis){
+		
+		printWriter.write(methodAnalysis.getAnalysisMessage());
+	
+		printWriter.write("\t(\n");
+		for(ParameterAnalysis parameterAnalysis : methodAnalysis.getParametersAnalysis()){
+			writeParameterAnalysis(parameterAnalysis);
 		}
 		
-		printWriter.write("\t)");
+		printWriter.write("\t)\n");
 	}
 
-	public void writePackageModel(PackageModel packageModel){
+
+	public void writeParameterAnalysis(ParameterAnalysis parameterAnalysis){
 		
+		printWriter.write(parameterAnalysis.getAnalysisMessage());
+		printWriter.write("\n");
 	}
-
-	public void writeParameterModel(ParameterModel parameterModel){
-		
-		String parameterInfo = parameterModel.getType() + " " + parameterModel.getName() + " // ";
-
-		if(parameterModel.getCommentText() != "")
-			parameterInfo += parameterModel.getCommentText();
-		else
-			parameterInfo += "EMPTY";
-		
-		printWriter.write("\t\t" + parameterInfo + "\n");
-
-	}*/
 
 
 
